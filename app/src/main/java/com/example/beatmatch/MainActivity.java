@@ -3,9 +3,8 @@ package com.example.beatmatch;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.view.View;
+import android.widget.Button;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mPause.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                mSpotifyAppRemote.getPlayerApi().pause("beatmatch://callback");
+                mSpotifyAppRemote.getPlayerApi().pause();
             }
         });
     }
