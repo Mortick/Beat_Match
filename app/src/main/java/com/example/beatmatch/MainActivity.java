@@ -1,5 +1,6 @@
 package com.example.beatmatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -9,6 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Toast;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Chronometer;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -20,12 +35,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "0cdf3e0de4db494c8632548161915b48";
     private static final String REDIRECT_URI = "beatmatch://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
-    private Button accelerometerButton;
+
 
 
 
     private Button mPause;
     private Button mPlay;
+    private Button accelerometerButton;
     private Chronometer chronometer;
 
 
@@ -36,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("Time: %s");
-        chronometer.setBase(SystemClock.elapsedRealtime());
-
+        //chronometer.setBase(SystemClock.elapsedRealtime());
+        /*
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -47,19 +63,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        */
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
         new CountDownTimer(10000,1000) {
+            Timer timer = new Timer();
+            Long startTime = System.currentTimeMillis();
             @Override
             public void onTick(long millisUntilFinished) {
 
-
+                chronometer.setFormat("Time: %s, " + startTime);
+                startTime = System.currentTimeMillis();
 
             }
 
             @Override
             public void onFinish() {
-                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+                //mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
 
             }
         }.start();
@@ -70,8 +90,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                mSpotifyAppRemote.getPlayerApi().resume();
+                //mSpotifyAppRemote.getPlayerApi().resume();
+                Intent accelerometerIntent = new Intent(MainActivity.this, AccelerometerSensor.class);
+                startActivity(accelerometerIntent);
             }
+
+
         });
         mPause = (Button) findViewById(R.id.pause_button);
         mPause.setOnClickListener(new View.OnClickListener(){
@@ -80,7 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 mSpotifyAppRemote.getPlayerApi().pause();
             }
         });
-    }
+        accelerometerButton = (Button) findViewById(R.id.accelerometerButtonId);
+        accelerometerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent accelerometerIntent = new Intent(MainActivity.this, AccelerometerSensor.class);
+                startActivity(accelerometerIntent);
+            }
+        });
+}
 
     @Override
     protected void onStart() {
