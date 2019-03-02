@@ -49,25 +49,40 @@ public class MainActivity extends AppCompatActivity {
                 if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 10000) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
                     Toast.makeText(MainActivity.this, "Bing!", Toast.LENGTH_SHORT).show();
+                    new CountDownTimer(10000,1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+
+                        }
+                    }.start();
                 }
             }
         });
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
-        new CountDownTimer(10000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
+//        new CountDownTimer(10000,1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+//
+//            }
+//        }.start();
 
-
-
-            }
-
-            @Override
-            public void onFinish() {
-                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-
-            }
-        }.start();
 
 
         mPlay = (Button) findViewById(R.id.play_button);
