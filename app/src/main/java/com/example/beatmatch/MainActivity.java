@@ -1,5 +1,6 @@
 package com.example.beatmatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mPause;
     private Button mPlay;
+    private Button mStop;
     private Chronometer chronometer;
 
     //I added this
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
                 if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 10000) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
-                    Toast.makeText(MainActivity.this, "Bing!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "NEXT!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -85,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mSpotifyAppRemote.getPlayerApi().pause();
+            }
+        });
+
+        mStop = (Button) findViewById(R.id.stopbtn);
+        mStop.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mSpotifyAppRemote.getPlayerApi().pause();
+                startActivity (new Intent(MainActivity.this, HomePage.class));
+
+
             }
         });
     }
