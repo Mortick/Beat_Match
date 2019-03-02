@@ -3,6 +3,9 @@ package com.example.beatmatch;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.os.Bundle;
+import android.view.*;
+import android.widget.*;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -15,11 +18,30 @@ public class MainActivity extends AppCompatActivity {
     private static final String REDIRECT_URI = "beatmatch://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
 
+    private Button mPlay;
+    private Button mPause;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPlay = (Button) findViewById(R.id.play_button);
+        mPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpotifyAppRemote.getPlayerApi().resume();
+            }
+        });
+
+        mPause = (Button) findViewById(R.id.pause_button);
+        mPause.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mSpotifyAppRemote.getPlayerApi().pause("beatmatch://callback");
+            }
+        });
     }
 
     @Override
