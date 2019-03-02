@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mPlay;
     private Button mStop;
     private Chronometer chronometer;
+    private Button mPrev;
+    private Button mNext;
 
     //I added this
 
@@ -60,7 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
-                            mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+                            url = mFireBase.getBPM("117");
+                            Log.e("scrubs", "\""+url+"\"");
+                            mSpotifyAppRemote.getPlayerApi().play("spotify:track:75aLTVBSGIquqzQ6AkmK3Q");
+//                            mSpotifyAppRemote.getPlayerApi().play("\""+url+"\"");
+//
 
                         }
                     }.start();
@@ -69,20 +75,24 @@ public class MainActivity extends AppCompatActivity {
         });
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
-//        new CountDownTimer(10000,1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-//
-//            }
-//        }.start();
+
+
+        new CountDownTimer(10000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+
+
+            }
+
+            @Override
+            public void onFinish() {
+                url = mFireBase.getBPM("102");
+                Log.e("scrubs", "\""+url+"\"");
+                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+
+            }
+        }.start();
 
 
 
@@ -94,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 mSpotifyAppRemote.getPlayerApi().resume();
 
                 //I added this.
-                url = mFireBase.getBPM("85");
+                url = mFireBase.getBPM("102");
+                Log.e("scrubs", "\""+url+"\"");
 
             }
         });
@@ -103,6 +114,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mSpotifyAppRemote.getPlayerApi().pause();
+            }
+        });
+        mPrev = (Button) findViewById(R.id.prevbtn);
+        mPrev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mSpotifyAppRemote.getPlayerApi().skipPrevious();
+            }
+        });
+        mNext = (Button) findViewById(R.id.nextbtn);
+        mNext.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mSpotifyAppRemote.getPlayerApi().skipNext();
             }
         });
         mStop = (Button) findViewById(R.id.stopbtn);

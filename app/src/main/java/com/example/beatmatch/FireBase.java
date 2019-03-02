@@ -28,7 +28,6 @@ public class FireBase {
                             try {
                                 url = dataSnapshot.getValue().toString();
                                 Log.e("scrubs", "This is the value of" + key + " : " + url);
-                                return url;
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -41,11 +40,13 @@ public class FireBase {
                     }
                 }
 
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
+            return url;
         }
     }
 
