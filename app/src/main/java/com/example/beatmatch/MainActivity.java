@@ -15,7 +15,7 @@ import com.spotify.protocol.types.Track;
 public class MainActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "0cdf3e0de4db494c8632548161915b48";
-    private static final String REDIRECT_URI = "https://developer.spotify.com/dashboard/applications/0cdf3e0de4db494c8632548161915b48";
+    private static final String REDIRECT_URI = "testschema://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
 
 
