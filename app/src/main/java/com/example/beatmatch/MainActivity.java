@@ -6,16 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.icu.util.MeasureUnit;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.protocol.client.*;
 import com.spotify.protocol.types.Track;
-
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mPlay;
     private Button mPause;
+    private Button mStart;
 
 
     @Override
@@ -42,23 +38,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mStart = (Button) findViewById(R.id.start_button);
+        mStart.setOnClickListener(new View.OnClickListener() {
+            int count = 0;
+            @Override
+
+            public void onClick(View v) {
+                if(count == 0) {
+                    mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+                    count++;
+                    mStart.setEnabled(false);
+                }
+            }
+        });
         mPlay = (Button) findViewById(R.id.play_button);
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
-                CallResult<PlayerState> playerStateCall = mSpotifyAppRemote.getPlayerApi().getPlayerState();
-                Result<PlayerState> playerStateResult = playerStateCall.await(10, TimeUnit.SECONDS);
-                PlayerState ps = playerStateResult.getData();
-
-                if (ps.isPaused)
-                {
-                    mSpotifyAppRemote.getPlayerApi().resume();
-                }
-                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-
+                mSpotifyAppRemote.getPlayerApi().resume();
             }
         });
-
         mPause = (Button) findViewById(R.id.pause_button);
         mPause.setOnClickListener(new View.OnClickListener(){
             @Override
