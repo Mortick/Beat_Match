@@ -76,7 +76,7 @@
 //
 //
 //    @Override
-//    public onSensorChanged(SensorEvent sensorEvent) {
+//    public String onSensorChanged(SensorEvent sensorEvent) {
 //        //chronometer.setBase(SystemClock.elapsedRealtime());
 //        //chronometer.start();
 //        if(firstValue == true){
@@ -149,6 +149,7 @@
 //
 //        Long currentTime2 = System.currentTimeMillis();
 //        LoopTimeValue.setText("Loop time: " + (currentTime2 - currentTime));
+//        return Long.toString(BPM);
 //
 //        //colorChange(sensorEvent);
 //

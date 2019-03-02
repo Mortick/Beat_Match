@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity{
     private Long startTime;
     private boolean readyForStep = true;
     private long firstStep;
-    private Long BPM;
+    private long BPM;
 
 
 
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity{
         new CountDownTimer(10000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                url = mFireBase.getBPM(Long.toString(BPM));
+
 
             }
 
@@ -81,8 +83,11 @@ public class MainActivity extends AppCompatActivity{
             public void onFinish() {
 //                url = mFireBase.getBPM("108");
 //                Log.e("scrubs", "\""+url+"\"");
-                url = mFireBase.getBPM(Long.toString(BPM));
-                mSpotifyAppRemote.getPlayerApi().play(url);
+                if(url==null){
+                    mSpotifyAppRemote.getPlayerApi().play(mFireBase.getBPM("108"));
+                }
+
+
 
             }
         }.start();
@@ -98,7 +103,6 @@ public class MainActivity extends AppCompatActivity{
                         public void onTick(long millisUntilFinished) {
 
 
-
                         }
 
                         @Override
@@ -106,8 +110,17 @@ public class MainActivity extends AppCompatActivity{
 //                            url = mFireBase.getBPM("117");
 //                            Log.e("scrubs", "\""+url+"\"");
 //                            mSpotifyAppRemote.getPlayerApi().play("spotify:track:75aLTVBSGIquqzQ6AkmK3Q");
+
                             url = mFireBase.getBPM(Long.toString(BPM));
-                            mSpotifyAppRemote.getPlayerApi().play(url);
+
+                            if(url!=null){
+                                mSpotifyAppRemote.getPlayerApi().play(url);
+                            }
+                            else
+
+                                mSpotifyAppRemote.getPlayerApi().play(mFireBase.getBPM("117"));
+
+
 //
 
                         }
@@ -127,8 +140,8 @@ public class MainActivity extends AppCompatActivity{
                 mSpotifyAppRemote.getPlayerApi().resume();
 
                 //I added this.
-                url = mFireBase.getBPM("102");
-                Log.e("scrubs", "\""+url+"\"");
+//                url = mFireBase.getBPM("102");
+//                Log.e("scrubs", "\""+url+"\"");
 
             }
         });
