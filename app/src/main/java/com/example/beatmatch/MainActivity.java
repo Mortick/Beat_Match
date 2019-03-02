@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     //I added this
 
     private FireBase mFireBase = new FireBase();
+    private String url;
 
 
 
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 mSpotifyAppRemote.getPlayerApi().resume();
 
                 //I added this.
-                mFireBase.getBPM("85");
+                url = mFireBase.getBPM("85");
 
             }
         });

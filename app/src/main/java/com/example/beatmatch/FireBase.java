@@ -18,7 +18,7 @@ public class FireBase {
         mReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://beatmatch-1c911.firebaseio.com/");
     }
 
-        public void getBPM (String key)
+        public String getBPM (String key)
         {
             mReference.child("BPM").child(key).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -28,6 +28,7 @@ public class FireBase {
                             try {
                                 url = dataSnapshot.getValue().toString();
                                 Log.e("scrubs", "This is the value of" + key + " : " + url);
+                                return url;
 
                             } catch (Exception e) {
                                 e.printStackTrace();
