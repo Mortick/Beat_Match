@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         mPause.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                mSpotifyAppRemote.getPlayerApi().pause("beatmatch://callback");
+                mSpotifyAppRemote.getPlayerApi().pause();
             }
         });
     }
