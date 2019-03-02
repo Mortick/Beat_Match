@@ -14,12 +14,7 @@ import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 import com.spotify.protocol.types.Track;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.beatmatch.FireBase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,13 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private SpotifyAppRemote mSpotifyAppRemote;
     private Button accelerometerButton;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
 
     private Button mPause;
     private Button mPlay;
     private Chronometer chronometer;
+
+    //I added this
+
+    private FireBase mFireBase = new FireBase();
 
 
 
@@ -79,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 mSpotifyAppRemote.getPlayerApi().resume();
+
+                //I added this.
+                mFireBase.getBPM(85);
+
             }
         });
         mPause = (Button) findViewById(R.id.pause_button);
