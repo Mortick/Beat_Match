@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Beat Match</string>
+    <string name="accelerometerButton">&#xe1c1; Accelerometer</string>
+    <string name="accelerometerIntroText">Accelerometer Sensor</string>
+    <string name="accelerometerInfo"> </string>
+    <string name="beat_match">Beat Match</string>
+    <string name="xValueText"> </string>
+    <string name="yValueText"> </string>
+    <string name="zValueText"> </string>g>
 </resources>
+
+
