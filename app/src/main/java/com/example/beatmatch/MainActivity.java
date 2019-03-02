@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     private SpotifyAppRemote mSpotifyAppRemote;
     private Button accelerometerButton;
 
+    private Button mPlay;
+    private Button mPause;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent accelerometerIntent = new Intent(MainActivity.this, AccelerometerSensor.class);
                 startActivity(accelerometerIntent);
+            }
+        });
+
+        mPlay = (Button) findViewById(R.id.play_button);
+        mPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpotifyAppRemote.getPlayerApi().resume();
+            }
+        });
+
+        mPause = (Button) findViewById(R.id.pause_button);
+        mPause.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mSpotifyAppRemote.getPlayerApi().pause();
             }
         });
     }
