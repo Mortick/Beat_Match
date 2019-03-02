@@ -41,11 +41,10 @@ public class HomePage extends AppCompatActivity {
         mStart = (Button) findViewById(R.id.start_button);
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
 
-                Intent mainActivity = new Intent(HomePage.this, MainActivity.class);
-                startActivity(mainActivity);
+                startActivity (new Intent(HomePage.this, MainActivity.class));
+
             }
         });
     }

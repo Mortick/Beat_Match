@@ -14,7 +14,6 @@ import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 import com.spotify.protocol.types.Track;
-import com.example.beatmatch.FireBase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     //I added this
 
-    private FireBase mFireBase = new FireBase();
+//    private FireBase mFireBase = new FireBase();
 
 
 
@@ -76,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mSpotifyAppRemote.getPlayerApi().resume();
 
-                //I added this.
-                mFireBase.getBPM(85);
+//                //I added this.
+//                mFireBase.getBPM("85");
 
             }
         });
