@@ -11,14 +11,11 @@ import android.util.Log;
 
 public class FireBase {
 
-    private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private String url;
 
     public FireBase() {
-        mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReferenceFromUrl("https://beatmatch-1c911.firebaseio.com/");
-    }
+        mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://beatmatch-1c911.firebaseio.com/");
 
     public void getBPM(int key)
     {
@@ -29,13 +26,13 @@ public class FireBase {
                    if (dataSnapshot.getValue() != null) {
                        try {
                            url = dataSnapshot.getValue();
-                           Log.e("TAG", "This is the value of" + key + " : " + url);
+                           Log.e("scrubs", "This is the value of" + key + " : " + url);
 
                        } catch (Exception e) {
                            e.printStackTrace();
                        }
                    } else {
-                       Log.e("TAG", " it's null.");
+                       Log.e("scrubs", " it's null.");
                    }
                } catch (Exception e) {
                    e.printStackTrace();
