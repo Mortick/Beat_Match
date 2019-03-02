@@ -1,21 +1,18 @@
 package com.example.beatmatch;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.*;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
-
-import com.spotify.protocol.client.Subscription;
-import com.spotify.protocol.types.PlayerState;
 import com.spotify.protocol.types.Track;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "0cdf3e0de4db494c8632548161915b48";
-    private static final String REDIRECT_URI = "testschema://callback";
+    private static final String REDIRECT_URI = "beatmatch://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
 
 
