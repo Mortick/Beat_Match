@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFailure(Throwable throwable) {
-                        Log.e("MyActivity", "It don't work");
+                        Log.e("MyActivity", throwable.getMessage(), throwable);
 
                         // Something went wrong when attempting to connect! Handle errors here
                     }
