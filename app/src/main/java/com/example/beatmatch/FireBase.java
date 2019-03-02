@@ -11,41 +11,40 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FireBase {
 
-    private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private String url;
 
     public FireBase() {
-        mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference("BPM");
+        mReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://beatmatch-1c911.firebaseio.com/");
     }
 
-    public void getBPM(String key)
-    {
-       mReference.child("BPM").child(key).addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               try {
-                   if (dataSnapshot.getValue() != null) {
-                       try {
-                           url = dataSnapshot.getValue().toString();
-                           Log.e("TAG", "This is the value of" + key + " : " + url);
+        public void getBPM (String key)
+        {
+            mReference.child("BPM").child(key).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try {
+                        if (dataSnapshot.getValue() != null) {
+                            try {
+                                url = dataSnapshot.getValue().toString();
+                                Log.e("scrubs", "This is the value of" + key + " : " + url);
 
-                       } catch (Exception e) {
-                           e.printStackTrace();
-                       }
-                   } else {
-                       Log.e("TAG", " it's null.");
-                   }
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-           }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.e("scrubs", " it's null.");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-           }
-       });
+                }
+            });
+        }
     }
-}
+

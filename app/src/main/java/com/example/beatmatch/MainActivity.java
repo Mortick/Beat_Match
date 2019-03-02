@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     //I added this
 
-//    private FireBase mFireBase = new FireBase();
+    private FireBase mFireBase = new FireBase();
 
 
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
                 if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 10000) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
-                    Toast.makeText(MainActivity.this, "NEXT!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Bing!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mSpotifyAppRemote.getPlayerApi().resume();
 
-//                //I added this.
-//                mFireBase.getBPM("85");
+                //I added this.
+                mFireBase.getBPM("85");
 
             }
         });
@@ -89,15 +89,12 @@ public class MainActivity extends AppCompatActivity {
                 mSpotifyAppRemote.getPlayerApi().pause();
             }
         });
-
         mStop = (Button) findViewById(R.id.stopbtn);
         mStop.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 mSpotifyAppRemote.getPlayerApi().pause();
                 startActivity (new Intent(MainActivity.this, HomePage.class));
-
-
             }
         });
     }
