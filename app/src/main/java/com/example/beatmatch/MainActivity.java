@@ -40,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSpotifyAppRemote.getPlayerApi().resume();
+                if (mSpotifyAppRemote.getPlayerApi().isPaused)
+                {
+                    mSpotifyAppRemote.getPlayerApi().resume();
+                }
+                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+
             }
         });
 
@@ -93,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     private void connected()
     {
         // Play a playlist
-        mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+        //mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
 
         // Subscribe to PlayerState
         mSpotifyAppRemote.getPlayerApi()
