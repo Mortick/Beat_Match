@@ -7,5 +7,6 @@
     <string name="beat_match">Beat Match</string>
     <string name="xValueText"> </string>
     <string name="yValueText"> </string>
-    <string name="zValueText"> </string>g>
+    <string name="zValueText"> </string>
+    <string name="timerText"> </string>
 </resources>

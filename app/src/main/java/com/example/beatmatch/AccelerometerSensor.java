@@ -1,6 +1,5 @@
 package com.example.beatmatch;
 
-
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,8 +9,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Timer;
+
 
 public class AccelerometerSensor extends AppCompatActivity implements SensorEventListener {
 
@@ -20,6 +23,11 @@ public class AccelerometerSensor extends AppCompatActivity implements SensorEven
     private SensorManager mySM;
     private TextView xValue, yValue, zValue, infoText;
     private WindowManager myWM;
+    private Timer timer;
+    private Chronometer chronometer;
+    private long pauseOffset;
+    private boolean running;
+
 
 
     @Override
@@ -36,6 +44,7 @@ public class AccelerometerSensor extends AppCompatActivity implements SensorEven
         zValue = (TextView)findViewById(R.id.zValueId);
         infoText = (TextView)findViewById(R.id.infoTextId);
 
+
         mySM = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 
         if(mySM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) == null){
@@ -46,6 +55,8 @@ public class AccelerometerSensor extends AppCompatActivity implements SensorEven
         else{
             mySensor = mySM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         }
+
+
 
     }
 
@@ -105,4 +116,27 @@ public class AccelerometerSensor extends AppCompatActivity implements SensorEven
         super.onPause();
         mySM.unregisterListener(this);
     }
+
+//    public void startChronometer(View v) {
+//        if (!running) {
+//            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+//            chronometer.start();
+//            running = true;
+//        }
+//    }
+//
+//    public void pauseChronometer(View v) {
+//        if (running) {
+//            chronometer.stop();
+//            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+//            running = false;
+//        }
+//    }
+//
+//    public void resetChronometer(View v) {
+//        chronometer.setBase(SystemClock.elapsedRealtime());
+//        pauseOffset = 0;
+//    }
+
+
 }
