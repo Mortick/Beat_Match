@@ -7,6 +7,24 @@
     tools:context=".MainActivity"
     android:background="@color/dark_blue">
 
+    <TextView
+        android:id="@+id/stepsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:padding="30dp"
+        android:text="0"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +33,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -33,6 +51,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.247" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="659dp"
+        android:layout_marginTop="140dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
 
         <Button
             android:id="@+id/start_button"
@@ -45,19 +72,15 @@
 
         <Button
             android:id="@+id/play_button"
-            android:layout_width="160sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#404040"
             android:gravity="center"
             android:text="Play" />
 
         <Button
             android:id="@+id/pause_button"
-            android:layout_width="160sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#404040"
             android:gravity="center"
             android:text="@string/pause" />
 
@@ -80,5 +103,18 @@
             app:layout_constraintVertical_bias="0.357" />
 
     </LinearLayout>
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 </android.support.constraint.ConstraintLayout>

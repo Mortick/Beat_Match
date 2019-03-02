@@ -57,6 +57,45 @@ tools:context="com.example.beatmatch.AccelerometerSensor">
     android:layout_below="@+id/yValueId"
     android:layout_centerHorizontal="true"/>
 
+    <!--<LinearLayout-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginTop="200dp">-->
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <!--<Button-->
+        <!--android:id="@+id/Start"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="startChronometer"-->
+        <!--android:text="start"-->
+        <!--android:textAlignment="center" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/pause"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="pauseChronometer"-->
+        <!--android:text="Pause"-->
+        <!--android:textAlignment="center" />/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/reset"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="resetChronometer"-->
+        <!--android:text="Reset" />-->
+
+
 <TextView
     android:text="@string/accelerometerInfo"
     android:layout_width="wrap_content"
@@ -66,5 +105,17 @@ tools:context="com.example.beatmatch.AccelerometerSensor">
     android:layout_centerHorizontal="true"
     android:layout_marginBottom="37dp"
     android:id="@+id/infoTextId"
-    android:textSize="18sp"/>
+    android:textSize="18sp"
+    android:layout_marginTop="600dp"/>
+
+    <Button
+        android:id="@+id/start"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startChronometer"
+        android:text="Start"
+        tools:text="Start" />
 </android.widget.RelativeLayout>
+
+
