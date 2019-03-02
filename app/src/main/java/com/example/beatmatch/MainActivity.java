@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "0cdf3e0de4db494c8632548161915b48";
     private static final String REDIRECT_URI = "beatmatch://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
-    private Button accelerometerButton;
 
 
     private Button mPause;
@@ -46,6 +45,25 @@ public class MainActivity extends AppCompatActivity {
         chronometer.setFormat("Time: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
 
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
+        new CountDownTimer(10000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                url = mFireBase.getBPM("108");
+
+            }
+
+            @Override
+            public void onFinish() {
+//                url = mFireBase.getBPM("108");
+//                Log.e("scrubs", "\""+url+"\"");
+                mSpotifyAppRemote.getPlayerApi().play(url);
+
+            }
+        }.start();
+
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -64,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onFinish() {
                             url = mFireBase.getBPM("117");
                             Log.e("scrubs", "\""+url+"\"");
-                            mSpotifyAppRemote.getPlayerApi().play("spotify:track:75aLTVBSGIquqzQ6AkmK3Q");
-//                            mSpotifyAppRemote.getPlayerApi().play("\""+url+"\"");
+//                            mSpotifyAppRemote.getPlayerApi().play("spotify:track:75aLTVBSGIquqzQ6AkmK3Q");
+                            mSpotifyAppRemote.getPlayerApi().play(url);
 //
 
                         }
@@ -73,26 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        chronometer.setBase(SystemClock.elapsedRealtime());
-        chronometer.start();
 
-
-        new CountDownTimer(10000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-
-
-            }
-
-            @Override
-            public void onFinish() {
-                url = mFireBase.getBPM("102");
-                Log.e("scrubs", "\""+url+"\"");
-                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-
-            }
-        }.start();
 
 
 
