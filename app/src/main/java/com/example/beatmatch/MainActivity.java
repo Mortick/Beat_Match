@@ -1,11 +1,11 @@
 package com.example.beatmatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.view.View;
+import android.widget.Button;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "0cdf3e0de4db494c8632548161915b48";
     private static final String REDIRECT_URI = "beatmatch://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
+    private Button accelerometerButton;
 
     private Button mPlay;
     private Button mPause;
@@ -26,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        accelerometerButton = (Button)findViewById(R.id.accelerometerButtonId);
+        accelerometerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent accelerometerIntent = new Intent(MainActivity.this, AccelerometerSensor.class);
+                startActivity(accelerometerIntent);
+            }
+        });
 
         mPlay = (Button) findViewById(R.id.play_button);
         mPlay.setOnClickListener(new View.OnClickListener() {
